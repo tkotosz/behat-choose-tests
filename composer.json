@@ -1,9 +1,9 @@
 {
-    "name": "bex/behat-scenario-chooser",
+    "name": "bex/behat-choose-tests",
     "type": "library",
-    "description": "Extension for behat to allow you to choose scenario to run interactively",
+    "description": "Extension for behat to allow you to interactively choose tests to run",
     "keywords": ["tdd","bdd","behat"],
-    "homepage": "https://github.com/tkotosz/behat-scenario-chooser",
+    "homepage": "https://github.com/tkotosz/behat-choose-tests",
     "license": "MIT",
     "authors": [
         {

@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="bex.cli.controller.suite.decorator"
+            decorates="cli.controller.suite"
+            class="Bex\Behat\ChooseTestsExtension\Decorator\SuiteControllerDecorator"
+            public="false">
+            <argument type="service" id="bex.cli.controller.suite.decorator.inner" />
+            <argument type="service" id="event_dispatcher" />
+        </service>
+
+        <service id="bex.choose_tests_extension.cli_choose_tests_controller" class="Bex\Behat\ChooseTestsExtension\Controller\ChooseTestsController">
+            <tag name="cli.controller" priority="1102"/>
+            <argument type="service" id="bex.choose_tests_extension.config" />
+        </service>
+
+        <service id="bex.choose_tests_extension.cli_suite_chooser_controller" class="Bex\Behat\ChooseTestsExtension\Controller\SuiteChooserController">
+            <tag name="cli.controller" priority="1102"/>
+            <argument type="service" id="bex.choose_tests_extension.config" />
+        </service>
+
+        <service id="bex.choose_tests_extension.cli_feature_chooser_controller" class="Bex\Behat\ChooseTestsExtension\Controller\FeatureChooserController">
+            <tag name="cli.controller" priority="1102"/>
+            <argument type="service" id="bex.choose_tests_extension.config" />
+        </service>
+
+        <service id="bex.choose_tests_extension.cli_scenario_chooser_controller" class="Bex\Behat\ChooseTestsExtension\Controller\ScenarioChooserController">
+            <tag name="cli.controller" priority="1102"/>
+            <argument type="service" id="bex.choose_tests_extension.config" />
+        </service>
+
+        <service id="bex.choose_tests_extension.test_selector_listener" class="Bex\Behat\ChooseTestsExtension\Listener\TestChooserListener" public="false">
+            <tag name="event_dispatcher.subscriber" />
+            <argument type="service" id="bex.choose_tests_extension.config" />
+            <argument type="service" id="bex.choose_tests_extension.suite_chooser" />
+            <argument type="service" id="bex.choose_tests_extension.feature_chooser" />
+            <argument type="service" id="bex.choose_tests_extension.scenario_chooser" />
+        </service>
+
+        <service id="bex.choose_tests_extension.suite_chooser" class="Bex\Behat\ChooseTestsExtension\Chooser\SuiteChooser" public="false">
+            <argument type="service" id="cli.input" />
+            <argument type="service" id="cli.output" />
+            <argument>%suite.configurations%</argument>
+        </service>
+
+        <service id="bex.choose_tests_extension.feature_chooser" class="Bex\Behat\ChooseTestsExtension\Chooser\FeatureChooser" public="false">
+            <argument type="service" id="cli.input" />
+            <argument type="service" id="cli.output" />
+            <argument type="service" id="suite.registry" />
+            <argument type="service" id="specifications.finder" />
+        </service>
+
+        <service id="bex.choose_tests_extension.scenario_chooser" class="Bex\Behat\ChooseTestsExtension\Chooser\ScenarioChooser" public="false">
+            <argument type="service" id="cli.input" />
+            <argument type="service" id="cli.output" />
+            <argument type="service" id="suite.registry" />
+            <argument type="service" id="specifications.finder" />
+        </service>
+    </services>
+</container>
