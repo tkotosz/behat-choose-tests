@@ -44,7 +44,7 @@ Run behat with `--choose-suite` option to interactively choose a suite to run:
 
 Example output:
 ```console
-tkotosz ~/behat-test-project $ bin/behat --choose-suite
+foo@bar:~$ bin/behat --choose-suite
 
  Choose suite:
 
@@ -69,7 +69,7 @@ Run behat with `--choose-feature` option to interactively choose a feature to ru
 
 Example output:
 ```console
-tkotosz ~/behat-test-project $ bin/behat --choose-feature
+foo@bar:~$ bin/behat --choose-feature
 
  Choose feature:
 
@@ -82,7 +82,7 @@ tkotosz ~/behat-test-project $ bin/behat --choose-feature
 ```
 
 ```console
-tkotosz ~/behat-test-project $ bin/behat --suite="firstsuite" --choose-feature
+foo@bar:~$ bin/behat --suite="firstsuite" --choose-feature
 
  Choose feature:
 
@@ -107,7 +107,7 @@ Run behat with `--choose-scenario` option to interactively choose a scenario to 
 
 Example output:
 ```console
-tkotosz ~/behat-test-project $ bin/behat --suite="firstsuite" --choose-scenario
+foo@bar:~$ bin/behat --suite="firstsuite" --choose-scenario
 
  Choose scenario:
 
@@ -122,7 +122,7 @@ tkotosz ~/behat-test-project $ bin/behat --suite="firstsuite" --choose-scenario
 ```
 
 ```console
-tkotosz ~/behat-test-project $ bin/behat features/first.feature --choose-scenario
+foo@bar:~$ bin/behat features/first.feature --choose-scenario
 
  Choose scenario:
 
@@ -139,7 +139,7 @@ Run behat with `--choose-tests` option to interactively choose tests to run. It 
 
 Example output:
 ```console
-tkotosz ~/behat-test-project $ bin/behat --choose-tests
+foo@bar:~$ bin/behat --choose-tests
 
  Choose suite:
 
