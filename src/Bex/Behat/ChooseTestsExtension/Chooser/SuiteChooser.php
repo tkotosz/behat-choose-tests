@@ -40,6 +40,9 @@ class SuiteChooser extends BaseChooser
 
     private function shouldAskQuestion()
     {
-        return (count($this->suiteNames) > 1) && empty($this->input->getOption('suite'));
+        $selectedSuite = $this->input->getOption('suite');
+        $numberOfSuites = count($this->suiteNames);
+
+        return empty($selectedSuite) && ($numberOfSuites > 1);
     }
 }
