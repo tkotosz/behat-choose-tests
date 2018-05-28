@@ -56,7 +56,10 @@ class ScenarioChooser extends BaseChooser
 
     private function shouldAskQuestion(array $scenarios = [])
     {
-        return (count($scenarios) > 1) && (empty($this->input->getArgument('paths')) || strpos($this->input->getArgument('paths'), ':') === false);
+        $selectedFeature = $this->input->getArgument('paths');
+        $numberOfScenarios = count($scenarios);
+
+        return (empty($selectedFeature) || (strpos($selectedFeature, ':') === false)) && ($numberOfScenarios > 1);
     }
 
     public function getScenarios()

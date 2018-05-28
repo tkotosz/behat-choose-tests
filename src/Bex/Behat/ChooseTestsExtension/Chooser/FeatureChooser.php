@@ -56,7 +56,10 @@ class FeatureChooser extends BaseChooser
 
     private function shouldAskQuestion(array $features = [])
     {
-        return (count($features) > 1) && empty($this->input->getArgument('paths'));
+        $selectedFeature = $this->input->getArgument('paths');
+        $numberOfFeatures = count($features);
+
+        return empty($selectedFeature) && ($numberOfFeatures > 1);
     }
 
     private function getFeatures()
