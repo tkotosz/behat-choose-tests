@@ -18,5 +18,4 @@ install:
   - composer update --no-interaction --prefer-source
 
 script:
-  - bin/phpspec run --no-interaction --format=pretty
   - bin/behat --no-interaction --no-snippets --stop-on-failure --format=pretty
