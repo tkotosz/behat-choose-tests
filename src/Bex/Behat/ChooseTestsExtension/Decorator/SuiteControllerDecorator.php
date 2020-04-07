@@ -53,11 +53,11 @@ class SuiteControllerDecorator implements Controller
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->eventDispatcher->dispatch(AvailableSuitesRegistered::BEFORE, new BeforeAvailableSuitesRegistered());
+        $this->eventDispatcher->dispatch(new BeforeAvailableSuitesRegistered(), AvailableSuitesRegistered::BEFORE);
         
         $result = $this->suiteContoller->execute($input, $output);
 
-        $this->eventDispatcher->dispatch(AvailableSuitesRegistered::AFTER, new AfterAvailableSuitesRegistered());
+        $this->eventDispatcher->dispatch(new AfterAvailableSuitesRegistered(), AvailableSuitesRegistered::AFTER);
 
         return $result;
     }
