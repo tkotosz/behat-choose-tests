@@ -2,7 +2,7 @@
 
 namespace Bex\Behat\ChooseTestsExtension\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Behat\Testwork\Event\Event;
 
 abstract class AvailableSuitesRegistered extends Event
 {
