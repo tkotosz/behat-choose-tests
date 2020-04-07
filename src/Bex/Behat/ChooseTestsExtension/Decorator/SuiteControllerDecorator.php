@@ -3,6 +3,7 @@
 namespace Bex\Behat\ChooseTestsExtension\Decorator;
 
 use Behat\Testwork\Cli\Controller;
+use Behat\Testwork\EventDispatcher\TestworkEventDispatcherSymfonyLegacy;
 use Bex\Behat\ChooseTestsExtension\Event\AfterAvailableSuitesRegistered;
 use Bex\Behat\ChooseTestsExtension\Event\AvailableSuitesRegistered;
 use Bex\Behat\ChooseTestsExtension\Event\BeforeAvailableSuitesRegistered;
@@ -53,11 +54,19 @@ class SuiteControllerDecorator implements Controller
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->eventDispatcher->dispatch(new BeforeAvailableSuitesRegistered(), AvailableSuitesRegistered::BEFORE);
+        if ($this->eventDispatcher instanceof TestworkEventDispatcherSymfonyLegacy) {
+            $this->eventDispatcher->dispatch(AvailableSuitesRegistered::BEFORE, new BeforeAvailableSuitesRegistered());
+        } else {
+            $this->eventDispatcher->dispatch(new BeforeAvailableSuitesRegistered(), AvailableSuitesRegistered::BEFORE);    
+        }
         
         $result = $this->suiteContoller->execute($input, $output);
 
-        $this->eventDispatcher->dispatch(new AfterAvailableSuitesRegistered(), AvailableSuitesRegistered::AFTER);
+        if ($this->eventDispatcher instanceof TestworkEventDispatcherSymfonyLegacy) {
+            $this->eventDispatcher->dispatch(AvailableSuitesRegistered::AFTER, new AfterAvailableSuitesRegistered());
+        } else {
+            $this->eventDispatcher->dispatch(new AfterAvailableSuitesRegistered(), AvailableSuitesRegistered::AFTER);    
+        }
 
         return $result;
     }
