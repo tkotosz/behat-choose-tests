@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.4",
-        "behat/behat": "^3.0.0"
+        "behat/behat": "^3.6"
     },
     "repositories": [
         {
